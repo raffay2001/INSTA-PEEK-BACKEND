@@ -2,6 +2,7 @@ const express = require('express');
 const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
 const docsRoute = require('./docs.route');
+const paymentRoute = require('./payment.route');
 const config = require('../../config/config');
 
 const router = express.Router();
@@ -25,6 +26,14 @@ const devRoutes = [
   },
 ];
 
+const paymentRoutes = [
+  // routes available only in development mode
+  {
+    path: '/payment',
+    route: paymentRoute,
+  },
+];
+
 defaultRoutes.forEach((route) => {
   router.use(route.path, route.route);
 });
@@ -32,6 +41,9 @@ defaultRoutes.forEach((route) => {
 /* istanbul ignore next */
 if (config.env === 'development') {
   devRoutes.forEach((route) => {
+    router.use(route.path, route.route);
+  });
+  paymentRoutes.forEach((route) => {
     router.use(route.path, route.route);
   });
 }
