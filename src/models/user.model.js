@@ -23,6 +23,15 @@ const userSchema = mongoose.Schema(
         }
       },
     },
+    subId: {
+      type: String,
+    },
+    package: {
+      type: String,
+    },
+    subStartDate:{
+      type:Date
+    },
     password: {
       type: String,
       required: true,
