@@ -95,7 +95,7 @@ const unsubscribe = async (subId) => {
       message: "Unsubscribed successfully",
       status: 200
     }
-  } catch (error) {
+  } catch (e) {
     return {
       success: false,
       status: 300,
